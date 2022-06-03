@@ -11,11 +11,11 @@ export class ModalService {
 
   private modal$ = new BehaviorSubject<IModal>({ active: false });
 
-  open() {
+  open(): void {
     this.modal$.next({ active: true });
   }
 
-  close() {
+  close(): void {
     this.modal$.next({ active: false });
   }
 
