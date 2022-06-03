@@ -1,1 +1,27 @@
-<p>modal works!</p>
+<!-- <section class="fixed inset-0 mt-[15vh] z-10" [ngClass]="{ hidden: !isModalOpen('foo') }"> -->
+<!--   <div class="min-h-screen text-center z-40"> -->
+<!--     <div class="text-left inline-block bg-white dark:bg-slate-800 rounded-xl shadow-2xl ring-1 ring-slate-900/5 w-full max-w-3xl overflow-hidden"> -->
+<!--       <ng-content></ng-content> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </section> -->
+
+<button (click)="open()">
+  <h2>Open</h2>
+</button>
+
+<div class="z-50 overflow-y-auto overflow-x-hidden fixed md:inset-0 w-full h-16 md:h-full" [hidden]="!(modal$ | async)!.active">
+
+  <!-- Backdrop -->
+  <div class=" backdrop-blur-sm fixed inset-0 bg-slate-900/10 dark:bg-slate-900/50 overflow-y-clip" (click)="close()"></div>
+
+  <!-- Modal Content -->
+  <div class="mx-auto mt-[15vh] md:max-w-2xl lg:max-w-3xl md:h-auto">
+    <div class="fixed bg-white dark:bg-slate-800 rounded-xl shadow-xl w-full md:max-w-2xl lg:max-w-3xl ring-1 ring-slate-900/5">
+      <ng-content select="[header]"></ng-content>
+      <ng-content select="[body]"></ng-content>
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+
+</div>
