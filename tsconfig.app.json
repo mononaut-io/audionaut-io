@@ -2,8 +2,19 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@core/*": [ "src/app/core/*" ],
+      "@directives/*": [ "src/app/directives/*" ],
+      "@interfaces/*": [ "src/app/interfaces/*" ],
+      "@modules/*": [ "src/app/modules/*" ],
+      "@pipes/*": [ "src/app/pipes/*" ],
+      "@services/*": [ "src/app/services/*" ],
+      "@shared/*": [ "src/app/shared/*" ],
+      "@utilities/*": [ "src/app/utilities/*" ],
+    },
   },
   "files": [
     "src/main.ts",
