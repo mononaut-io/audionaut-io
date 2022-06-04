@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger, query, animateChild, group } from '@angular/animations';
 import { ModalService } from '@services/modal.service';
@@ -61,8 +61,16 @@ export class ModalComponent implements OnInit {
     this._modalService.open();
   }
 
+  @HostListener('document:keydown.escape')
   close(): void {
+    console.log('called')
     this._modalService.close();
+  }
+
+  @HostListener('document:keydown.meta.k')
+  @HostListener('document:keydown.control.k')
+  toggle(): void {
+    this._modalService.toggle();
   }
 
 }
