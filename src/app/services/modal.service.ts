@@ -19,6 +19,10 @@ export class ModalService {
     this.modal$.next({ active: false });
   }
 
+  toggle(): void {
+    this.modal$.next({ active: !this.modal$.value.active });
+  }
+
   watch(): Observable<IModal> {
     return this.modal$.asObservable();
   }
