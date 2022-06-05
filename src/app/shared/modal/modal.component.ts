@@ -63,7 +63,6 @@ export class ModalComponent implements OnInit {
 
   @HostListener('document:keydown.escape')
   close(): void {
-    console.log('called')
     this._modalService.close();
   }
 
