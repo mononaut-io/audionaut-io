@@ -6,6 +6,9 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    document.documentElement.classList[JSON.parse(localStorage.theme).dark ? 'add' : 'remove']('dark');
+  </script>
 </head>
 <body class="text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-900">
   <app-root></app-root>

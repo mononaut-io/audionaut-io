@@ -14,14 +14,9 @@ export class ThemeService {
 
   constructor(private _localStorageService: LocalStorageService) {
     this.initialise();
-    this.theme$.subscribe( theme => {
-      const _classList = document.getElementsByTagName('html').item(0)?.classList;
-      this._localStorageService.set(this._localVarName, theme);
-      theme.dark ? _classList?.add('dark') : _classList?.remove('dark');
-    });
   }
 
-  private initialise(): void {
+  initialise(): void {
     if (this._localStorageService.get(this._localVarName) === null) {
       this._localStorageService.set(this._localVarName, this.default);
     }
@@ -29,6 +24,13 @@ export class ThemeService {
     this.theme$.next(
       Object(this._localStorageService.get(this._localVarName))
     );
+
+    this.theme$.subscribe( theme => {
+      const _classList = document.getElementsByTagName('html').item(0)?.classList;
+      this._localStorageService.set(this._localVarName, theme);
+      theme.dark ? _classList?.add('dark') : _classList?.remove('dark');
+    });
+
   }
 
   toggle(): void {
