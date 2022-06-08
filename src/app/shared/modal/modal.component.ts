@@ -21,8 +21,13 @@ export class ModalComponent implements OnInit {
     this._modalService.open();
   }
 
-  @HostListener('document:keydown.escape')
-  close(): void {
+  @HostListener('document:keydown.escape', ['$event'])
+  close(event: KeyboardEvent | MouseEvent): void {
+    // Avoid keydown.escape exiting full screen mode in some browsers.
+    if (event instanceof KeyboardEvent) {
+      event.preventDefault();
+    };
+
     this._modalService.close();
   }
 

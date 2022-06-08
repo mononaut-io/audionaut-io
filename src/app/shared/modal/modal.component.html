@@ -5,7 +5,7 @@
 <div *ngIf=" (modal$ | async)!.active" class="z-50 overflow-y-auto overflow-x-hidden fixed md:inset-0 w-full h-16 md:h-full">
 
   <!-- Backdrop -->
-  <div class="backdrop-blur-sm fixed inset-0 bg-slate-900/25 dark:bg-slate-900/50 overflow-y-clip" (click)="close()"></div>
+  <div class="backdrop-blur-sm fixed inset-0 bg-slate-900/25 dark:bg-slate-900/50 overflow-y-clip" (click)="close($event)"></div>
 
   <!-- Modal Content -->
   <div class="mx-auto mt-[15vh] md:max-w-2xl lg:max-w-3xl md:h-auto">
