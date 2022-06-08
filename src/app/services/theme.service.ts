@@ -8,7 +8,7 @@ import { ITheme } from '@interfaces/theme';
 })
 export class ThemeService {
 
-  private _localVarName: string = 'theme';
+  private localKey: string = 'theme';
   private default: ITheme = { dark: false };
   theme$: BehaviorSubject<ITheme> = new BehaviorSubject<ITheme>(this.default);
 
@@ -17,18 +17,17 @@ export class ThemeService {
   }
 
   initialise(): void {
-    if (this._localStorageService.get(this._localVarName) === null) {
-      this._localStorageService.set(this._localVarName, this.default);
+    if (this._localStorageService.get(this.localKey) === null) {
+      this._localStorageService.set(this.localKey, this.default);
     }
 
     this.theme$.next(
-      Object(this._localStorageService.get(this._localVarName))
+      Object(this._localStorageService.get(this.localKey))
     );
 
     this.theme$.subscribe( theme => {
-      const _classList = document.getElementsByTagName('html').item(0)?.classList;
-      this._localStorageService.set(this._localVarName, theme);
-      theme.dark ? _classList?.add('dark') : _classList?.remove('dark');
+      this._localStorageService.set(this.localKey, theme);
+      theme.dark ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
     });
 
   }
