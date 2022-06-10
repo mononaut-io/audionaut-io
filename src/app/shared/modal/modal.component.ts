@@ -17,6 +17,7 @@ export class ModalComponent implements OnInit {
     this.modal$ = this._modalService.watch();
   }
 
+  // TODO: Call this function from app.component.html?
   open(): void {
     this._modalService.open();
   }

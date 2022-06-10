@@ -15,8 +15,8 @@ export class AppComponent {
     this._themeService.toggle();
   }
 
-  closeModal(): void {
-    this._modalService.close();
+  openModal(): void {
+    this._modalService.open();
   }
 
 }

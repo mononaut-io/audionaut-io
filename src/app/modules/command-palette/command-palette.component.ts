@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from '@services/modal.service';
 
 @Component({
   selector: 'app-command-palette',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandPaletteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _modalService: ModalService) { }
 
   ngOnInit(): void {
+  }
+
+  closeModal(): void {
+    this._modalService.close();
   }
 
 }
