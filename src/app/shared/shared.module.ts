@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './modal/modal.component';
+import { HttpClientModule } from '@angular/common/http';
+
+// User Modules
+import { ModalComponent } from '@shared/modal/modal.component';
 
 
 
 @NgModule({
   declarations: [
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   exports: [
     ModalComponent,
+    AngularSvgIconModule,
   ]
 })
 export class SharedModule { }
