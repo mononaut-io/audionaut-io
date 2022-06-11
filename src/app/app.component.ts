@@ -15,6 +15,10 @@ export class AppComponent {
     this._themeService.toggle();
   }
 
+  isDarkTheme(): boolean {
+    return this._themeService.theme$.value.dark;
+  }
+
   openModal(): void {
     this._modalService.open();
   }

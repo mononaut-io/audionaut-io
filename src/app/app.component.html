@@ -1,3 +1,8 @@
-<button (click)="toggleTheme()">Change theme</button>
+<!-- Toggle Theme Button -->
+<button type="button" (click)="toggleTheme()" class="h-8 w-8 p-1 rounded-lg fill-sky-500 hover:bg-sky-100 dark:hover:bg-sky-800/20">
+  <svg-icon *ngIf="isDarkTheme()" src="/assets/svg/solid/moon.svg"></svg-icon>
+  <svg-icon *ngIf="!isDarkTheme()" src="/assets/svg/solid/sun.svg"></svg-icon>
+</button>
+</button>
 <button (click)="openModal()">Open</button>
 <app-command-palette></app-command-palette>
