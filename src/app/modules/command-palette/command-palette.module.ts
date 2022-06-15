@@ -3,11 +3,13 @@ import { SharedModule } from '@shared/shared.module';
 import { AutoFocusDirective } from '@directives/auto-focus.directive';
 
 // Components
+import { CommandPaletteBodyComponent } from './command-palette-body/command-palette-body.component';
 import { CommandPaletteComponent } from './command-palette.component';
 
 
 @NgModule({
   declarations: [
+    CommandPaletteBodyComponent,
     CommandPaletteComponent,
     AutoFocusDirective,
   ],
@@ -15,6 +17,7 @@ import { CommandPaletteComponent } from './command-palette.component';
     SharedModule,
   ],
   exports: [
+    CommandPaletteBodyComponent,
     CommandPaletteComponent,
   ]
 })
