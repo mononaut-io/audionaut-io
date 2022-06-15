@@ -1,19 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ModalService } from '@services/modal.service';
 
 @Component({
   selector: 'app-command-palette',
   templateUrl: './command-palette.component.html',
 })
-export class CommandPaletteComponent implements OnInit {
+export class CommandPaletteComponent {
+  modalID: string = 'commandPalette';
 
   constructor(private _modalService: ModalService) { }
 
-  ngOnInit(): void {
+  close(): void {
+    this._modalService.close(this.modalID);
   }
 
-  closeModal(): void {
-    this._modalService.close();
+  isOpen(): boolean {
+    return this._modalService.isOpen(this.modalID);
   }
+
+  @HostListener('document:keydown.meta.k')
+  @HostListener('document:keydown.control.k')
+  toggle(): void {
+    this._modalService.toggle(this.modalID);
+  }
+
 
 }

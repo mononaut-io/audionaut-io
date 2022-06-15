@@ -1,5 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core';
 import { ModalService } from '@services/modal.service';
 import { IModal } from '@interfaces/modal';
 
@@ -8,18 +7,22 @@ import { IModal } from '@interfaces/modal';
   templateUrl: './modal.component.html',
   animations: [],
 })
-export class ModalComponent implements OnInit {
-  modal$: Observable<IModal> = new Observable();
+export class ModalComponent implements OnInit, OnDestroy {
+  @Input() id: string = '';
+  modal?: IModal = { id: this.id, active: false };
 
-  constructor(private _modalService: ModalService) { }
+  constructor(public _modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.modal$ = this._modalService.watch();
+    this._modalService.watch().subscribe(data => {
+      this.modal = data.find(modal => modal.id === this.id)
+    });
   }
 
-  // TODO: Call this function from app.component.html?
-  open(): void {
-    this._modalService.open();
+  ngOnDestroy(): void {
+    console.log(this.id, 'ngOnDestroy called');
+    this._modalService.delete(this.id);
+    this._modalService.complete();
   }
 
   @HostListener('document:keydown.escape', ['$event'])
@@ -28,14 +31,7 @@ export class ModalComponent implements OnInit {
     if (event instanceof KeyboardEvent) {
       event.preventDefault();
     };
-
-    this._modalService.close();
-  }
-
-  @HostListener('document:keydown.meta.k')
-  @HostListener('document:keydown.control.k')
-  toggle(): void {
-    this._modalService.toggle();
+    this._modalService.close(this.id);
   }
 
 }

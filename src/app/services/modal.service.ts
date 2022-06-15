@@ -6,25 +6,48 @@ import { IModal } from '@interfaces/modal';
   providedIn: 'root'
 })
 export class ModalService {
+  private modal$: BehaviorSubject<IModal[]> = new BehaviorSubject<IModal[]>([]);
+  private _m: IModal[] = [];
 
   constructor() { }
 
-  private modal$ = new BehaviorSubject<IModal>({ active: false });
-
-  open(): void {
-    this.modal$.next({ active: true });
+  add(id: string): void {
+    this._m.push({ id: id, active: false });
+    this.modal$.next(this._m);
   }
 
-  close(): void {
-    this.modal$.next({ active: false });
+  delete(id: string): void {
+    this._m = this._m.filter(modal => modal.id !== id);
+    this.modal$.next(this._m);
   }
 
-  toggle(): void {
-    this.modal$.next({ active: !this.modal$.value.active });
+  open(id: string): void {
+    this._m = this._m.filter(modal => modal.id !== id);
+    this._m.push({ id: id, active: true });
+    this.modal$.next(this._m);
   }
 
-  watch(): Observable<IModal> {
+  close(id: string): void {
+    this._m = this._m.filter(modal => modal.id !== id);
+    this._m.push({ id: id, active: false });
+    this.modal$.next(this._m);
+  }
+
+  isOpen(id: string): boolean {
+    return Boolean(this._m.find(modal => modal.id === id)?.active);
+  }
+
+  toggle(id: string): void {
+    const active = this._m.find(modal => modal.id === id)?.active;
+    active ? this.close(id) : this.open(id);
+  }
+
+  watch(): Observable<IModal[]> {
     return this.modal$.asObservable();
+  }
+
+  complete(): void {
+    this.modal$.complete();
   }
 
 }

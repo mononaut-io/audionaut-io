@@ -19,8 +19,8 @@ export class AppComponent {
     return this._themeService.theme$.value.dark;
   }
 
-  openModal(): void {
-    this._modalService.open();
+  openCommandPalette(): void {
+    this._modalService.open('commandPalette');
   }
 
 }
