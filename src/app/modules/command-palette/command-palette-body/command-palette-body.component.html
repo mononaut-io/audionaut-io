@@ -1,8 +1,24 @@
-<div class="p-16 text-center space-y-2">
-  <h2 class="font-semibold text-slate-900 dark:text-slate-300">
-    No results found.
-  </h2>
-  <p class="text-sm text-slate-500">
-    We can't find this plugin at the moment, try searching something else.
-  </p>
+<div *ngIf="!(search$ | async)">
+  History and favourites will go here!
 </div>
+
+<ng-container *ngIf="(plugin$ | async) | fuzzySearch:(search$ | async):{ keys: [{name: 'name', weight: 2}, {name: 'company', weight: 1}] }; let results">
+
+  <ng-container *ngIf="results.length">
+    <ul *ngFor="let plugin of results">
+      {{ plugin.item.name }}
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="(!results.length) && (search$ | async)">
+    <div class="p-16 text-center space-y-2">
+      <h2 class="font-semibold text-slate-900 dark:text-slate-300">
+        No results found.
+      </h2>
+      <p class="text-sm text-slate-500">
+        We can't find this plugin at the moment, try searching something else.
+      </p>
+    </div>
+  </ng-container>
+
+</ng-container>

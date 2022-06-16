@@ -6,12 +6,15 @@ import { AutoFocusDirective } from '@directives/auto-focus.directive';
 import { CommandPaletteBodyComponent } from './command-palette-body/command-palette-body.component';
 import { CommandPaletteComponent } from './command-palette.component';
 
+// Pipes
+import { FuzzySearchPipe } from '@pipes/fuzzy-search.pipe';
 
 @NgModule({
   declarations: [
     CommandPaletteBodyComponent,
     CommandPaletteComponent,
     AutoFocusDirective,
+    FuzzySearchPipe,
   ],
   imports: [
     SharedModule,
