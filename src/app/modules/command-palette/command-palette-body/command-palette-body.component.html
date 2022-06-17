@@ -1,15 +1,15 @@
-<div *ngIf="!(search$ | async)" class="my-4 px-6 max-h-80 overflow-y-auto">
+<div *ngIf="!(search$ | async)" class="mt-4 mb-6 px-6 max-h-[70vh] overflow-y-auto">
 
-  <!-- Title -->
-  <h2 class="-mx-6 px-6 py-4 font-semibold border-b border-slate-100 dark:border-white/5 text-slate-900 dark:text-slate-300">
+  <!-- History Title -->
+  <h2 class="-mx-6 px-6 py-4 font-semibold border-b border-slate-100 dark:border-slate-300/5 text-slate-900 dark:text-slate-300">
     Recent
   </h2>
 
   <!-- History List -->
-  <div *ngFor="let plugin of (history$ | async)" class="-mx-6 -ml-8 flex justify-between border-b border-slate-100 dark:border-white/5 py-4 pr-6 pl-8 items-center">
+  <div *ngFor="let plugin of (history$ | async)" class="-mx-6 -ml-8 flex justify-between border-b border-slate-100 dark:border-slate-300/5 py-4 pr-6 pl-8 items-center">
     <span class="text-sm text-slate-500">{{ plugin.name }}</span>
 
-    <div class="flex pl-2 divide-x divide-slate-200 dark:divide-white/5">
+    <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
 
       <!-- Add To Favourites -->
       <button class="group py-1 px-3">
