@@ -1,11 +1,16 @@
 <div *ngIf="!(search$ | async)">
-  History and favourites will go here!
+  <div *ngFor="let plugin of (history$ | async)">
+    {{ plugin.name }}
+    <button class="group py-1 px-2" (click)="removeHistory(plugin)">
+      <svg-icon src="/assets/svg/solid/x.svg" class="h-5 w-5 fill-slate-400 group-hover:fill-slate-600" [applyClass]="true"></svg-icon>
+    </button>
+  </div>
 </div>
 
 <ng-container *ngIf="(plugin$ | async) | fuzzySearch:(search$ | async):{ keys: [{name: 'name', weight: 2}, {name: 'company', weight: 1}] }; let results">
 
   <ng-container *ngIf="results.length">
-    <ul *ngFor="let plugin of results">
+    <ul *ngFor="let plugin of results" (click)="addHistory(plugin.item)">
       {{ plugin.item.name }}
     </ul>
   </ng-container>
