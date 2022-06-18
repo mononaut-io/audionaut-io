@@ -12,7 +12,7 @@
     <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
 
       <!-- Add To Favourites -->
-      <button class="group py-1 px-3">
+      <button class="group py-1 px-3" (click)="addFavourites(plugin)">
         <svg-icon src="/assets/svg/solid/sparkles.svg" class="h-5 w-5 fill-slate-400 dark:fill-slate-600 group-hover:fill-sky-500" [applyClass]="true"></svg-icon>
       </button>
 
@@ -22,18 +22,46 @@
       </button>
 
     </div>
-
   </div>
+
+
+  <!-- Favourites Title -->
+  <h2 class="-mx-6 px-6 pb-4 pt-6 font-semibold border-b border-slate-100 dark:border-slate-300/5 text-slate-900 dark:text-slate-300">
+    Favourites
+  </h2>
+
+  <!-- Favourites List -->
+  <div *ngFor="let plugin of (favourites$ | async)" class="bg-sky-500/5 dark:bg-slate-700/10 -mx-6 -ml-8 flex justify-between border-b border-slate-100 dark:border-slate-300/5 py-4 pr-6 pl-8 items-center">
+    <span class="text-sm text-slate-500">{{ plugin.name }}</span>
+
+    <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
+
+      <!-- Remove From Favourites -->
+      <button class="group py-1 px-3" (click)="removeFavourites(plugin)">
+        <svg-icon src="/assets/svg/solid/sparkles.svg" class="h-5 w-5 fill-sky-500 group-hover:fill-slate-400 dark:group-hover:fill-slate-500" [applyClass]="true"></svg-icon>
+      </button>
+
+      <!-- Remove From History -->
+      <button class="group py-1 px-2" (click)="removeFavourites(plugin)">
+        <svg-icon src="/assets/svg/solid/x.svg" class="h-5 w-5 fill-slate-400 dark:fill-slate-600 group-hover:fill-slate-500" [applyClass]="true"></svg-icon>
+      </button>
+
+    </div>
+  </div>
+
 </div>
+
 
 <ng-container *ngIf="(plugin$ | async) | fuzzySearch:(search$ | async):{ keys: [{name: 'name', weight: 2}, {name: 'company', weight: 1}] }; let results">
 
+  <!-- Results List -->
   <ng-container *ngIf="results.length">
     <ul *ngFor="let plugin of results" (click)="addHistory(plugin.item)">
       {{ plugin.item.name }}
     </ul>
   </ng-container>
 
+  <!-- Results Not Found -->
   <ng-container *ngIf="(!results.length) && (search$ | async)">
     <div class="p-16 text-center space-y-2">
       <h2 class="font-semibold text-slate-900 dark:text-slate-300">
