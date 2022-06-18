@@ -23,11 +23,11 @@
       <span class="text-sm text-slate-500">{{ plugin.name }}</span>
       <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
         <!-- Add To Favourites -->
-        <button class="group py-1 px-3" (click)="addFavourites(plugin)">
+        <button class="group py-1 px-3" (click)="addFavourites(plugin)" title="Add this search to favourites">
           <svg-icon src="/assets/svg/solid/sparkles.svg" class="h-5 w-5 fill-slate-400 dark:fill-slate-600 group-hover:fill-sky-500" [applyClass]="true"></svg-icon>
         </button>
         <!-- Remove From History -->
-        <button class="group py-1 px-2" (click)="removeHistory(plugin)">
+        <button class="group py-1 px-2" (click)="removeHistory(plugin)" title="Remove this search from history">
           <svg-icon src="/assets/svg/solid/x.svg" class="h-5 w-5 fill-slate-400 dark:fill-slate-600 group-hover:fill-slate-500" [applyClass]="true"></svg-icon>
         </button>
       </div>
@@ -46,11 +46,11 @@
       <span class="text-sm text-slate-500">{{ plugin.name }}</span>
       <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
         <!-- Remove From Favourites -->
-        <button class="group py-1 px-3" (click)="removeFavourites(plugin)">
+        <button class="group py-1 px-3" (click)="removeFavourites(plugin)" title="Remove this search from favourites">
           <svg-icon src="/assets/svg/solid/sparkles.svg" class="h-5 w-5 fill-sky-500 group-hover:fill-slate-400 dark:group-hover:fill-slate-500" [applyClass]="true"></svg-icon>
         </button>
-        <!-- Remove From History -->
-        <button class="group py-1 px-2" (click)="removeFavourites(plugin)">
+        <!-- Remove From Favourites -->
+        <button class="group py-1 px-2" (click)="removeFavourites(plugin)" title="Remove this search from favourites">
           <svg-icon src="/assets/svg/solid/x.svg" class="h-5 w-5 fill-slate-400 dark:fill-slate-600 group-hover:fill-slate-500" [applyClass]="true"></svg-icon>
         </button>
       </div>
