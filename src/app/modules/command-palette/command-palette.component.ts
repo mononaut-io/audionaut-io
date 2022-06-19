@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from '@services/modal.service';
 import { SearchService } from '@services/search.service';
+import { ActiveRowService } from '@services/active-row.service';
 
 @Component({
   selector: 'app-command-palette',
@@ -11,8 +12,12 @@ export class CommandPaletteComponent {
   modalID: string = 'commandPalette';
   search$: Observable<string> = new Observable();
 
-  constructor(private _modalService: ModalService, private _searchService: SearchService) {
-    this.search$ = this._searchService.watch();
+  constructor(
+    private _modalService: ModalService,
+    private _searchService: SearchService,
+    private _activeRowService: ActiveRowService,
+  ) {
+    this.search$ = this._searchService.watch(); // FIXME: to ngoninit
   }
 
   onModelChange($event: string): void {
@@ -34,6 +39,15 @@ export class CommandPaletteComponent {
   toggle(): void {
     this._modalService.toggle(this.modalID);
     this._searchService.reset();
+    this._activeRowService.reset();
+  }
+
+  incrementRow(value: number = 1): void {
+    this._activeRowService.increment(value);
+  }
+
+  decrementRow(value: number = 1): void {
+    this._activeRowService.decrement(value);
   }
 
 }

@@ -19,7 +19,7 @@
     </h2>
 
     <!-- List -->
-    <div *ngFor="let plugin of (history$ | async)" class="-mx-6 -ml-8 flex justify-between border-b border-slate-100 dark:border-slate-300/5 py-4 pr-6 pl-8 items-center">
+    <div *ngFor="let plugin of (history$ | async); index as row" class="-mx-6 -ml-8 flex justify-between border-b border-slate-100 dark:border-slate-300/5 py-4 pr-6 pl-8 items-center" [ngClass]="row === (activeRow$ | async) ? 'bg-red-500' : 'bg-blue-500'">
       <span class="text-sm text-slate-500">{{ plugin.name }}</span>
       <div class="flex pl-2 divide-x divide-slate-200 dark:divide-slate-300/5">
         <!-- Add To Favourites -->

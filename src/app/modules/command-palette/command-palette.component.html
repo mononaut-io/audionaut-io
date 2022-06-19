@@ -1,4 +1,4 @@
-<app-modal [id]="modalID">
+<app-modal [id]="modalID" (keydown.arrowDown)="incrementRow()" (keydown.arrowUp)="decrementRow()">
 
   <!-- Header -->
   <div header class="flex w-full px-6 py-2 border-b border-slate-200 dark:border-white/5 items-center justify-between">

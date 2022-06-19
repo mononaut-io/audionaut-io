@@ -6,6 +6,7 @@ import { SearchService } from '@services/search.service';
 import { PluginService } from '@services/plugin.service';
 import { HistoryService } from '@services/history.service';
 import { FavouritesService } from '@services/favourites.service';
+import { ActiveRowService } from '@services/active-row.service';
 
 // Interfaces
 import { IPlugin } from '@interfaces/plugin';
@@ -19,12 +20,14 @@ export class CommandPaletteBodyComponent implements OnInit {
   plugin$: Observable<IPlugin[]> = new Observable();
   history$: Observable<IPlugin[]> = new Observable();
   favourites$: Observable<IPlugin[]> = new Observable();
+  activeRow$: Observable<number> = new Observable();
 
   constructor(
     private _searchService: SearchService,
     private _pluginService: PluginService,
     private _historyService: HistoryService,
     private _favouritesService: FavouritesService,
+    private _activeRowService: ActiveRowService,
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class CommandPaletteBodyComponent implements OnInit {
     this.plugin$ = this._pluginService.watch();
     this.history$ = this._historyService.watch();
     this.favourites$ = this._favouritesService.watch();
+    this.activeRow$ = this._activeRowService.watch();
   }
 
   addHistory(data: IPlugin): void {
